@@ -1292,6 +1292,8 @@ public class ElasticsearchNode implements TestClusterConfiguration {
 
         baseConfig.put("action.destructive_requires_name", "false");
 
+        baseConfig.put("xpack.ml.enabled", "false");
+
         HashSet<String> overriden = new HashSet<>(baseConfig.keySet());
         overriden.retainAll(settings.keySet());
         overriden.removeAll(OVERRIDABLE_SETTINGS);
@@ -1302,7 +1304,6 @@ public class ElasticsearchNode implements TestClusterConfiguration {
         }
         // Make sure no duplicate config keys
         settings.keySet().stream().filter(OVERRIDABLE_SETTINGS::contains).forEach(baseConfig::remove);
-
         final Path configFileRoot = configFile.getParent();
         try {
             Files.write(
