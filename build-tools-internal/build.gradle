@@ -314,3 +314,7 @@ tasks.register("integTest", Test) {
 }
 
 tasks.named("check").configure { dependsOn("integTest") }
+
+jar {
+  duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+}
